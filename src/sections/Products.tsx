@@ -1,12 +1,22 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { PRODUCT_GROUPS } from "@/data/products";
 import { cn } from "@/lib/cn";
 import { ArrowRight } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import ContactForm from "@/components/ContactForm"; // путь поправь под свой
 
 export default function ProductsSection() {
+  const [openForm, setOpenForm] = useState(false);
+
   return (
     <section id="products" className="bg-gray-50 pt-32 pb-16 sm:pt-36 sm:pb-20">
       <div className="mx-auto max-w-container px-4">
@@ -20,14 +30,29 @@ export default function ProductsSection() {
           Что мы производим
         </motion.h2>
         <p className="mx-auto mt-2 max-w-[70ch] text-center text-gray-600">
-          Полный цикл: проектирование, изготовление и монтаж металлоконструкций — от каркасов и
-          опор до ограждений и индивидуальных решений.
+          Полный цикл: проектирование, изготовление и монтаж металлоконструкций — от
+          каркасов и опор до ограждений и индивидуальных решений.
         </p>
 
         {PRODUCT_GROUPS.map((group, groupIdx) => (
-          <GroupBlock key={group.id} {...group} index={groupIdx} />
+          <GroupBlock
+            key={group.id}
+            {...group}
+            index={groupIdx}
+            onOpenForm={() => setOpenForm(true)}
+          />
         ))}
       </div>
+
+      {/* Модалка с формой */}
+      <Dialog open={openForm} onOpenChange={setOpenForm}>
+        <DialogContent className="max-w-xl bg-white">
+          <DialogHeader>
+            <DialogTitle>Оставьте заявку</DialogTitle>
+          </DialogHeader>
+          <ContactForm variant="modal" />
+        </DialogContent>
+      </Dialog>
     </section>
   );
 }
@@ -37,11 +62,13 @@ function GroupBlock({
   title,
   items,
   index,
+  onOpenForm,
 }: {
   id: string;
   title: string;
   items: { title: string; img: string; tag?: "hit" | "new" }[];
   index: number;
+  onOpenForm: () => void;
 }) {
   return (
     <section id={id} className="mt-12 sm:mt-14">
@@ -55,12 +82,12 @@ function GroupBlock({
         >
           {title}
         </motion.h3>
-        <a
-          href="#contact-form"
+        <button
+          onClick={onOpenForm}
           className="hidden items-center gap-1 rounded-md border border-black/10 bg-white/60 px-3 py-2 text-sm font-semibold text-gray-900 backdrop-blur hover:bg-white sm:inline-flex"
         >
           Запросить расчёт <ArrowRight className="h-4 w-4" />
-        </a>
+        </button>
       </div>
 
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -85,9 +112,7 @@ function GroupBlock({
                 sizes="(max-width: 1024px) 100vw, 33vw"
                 priority={index === 0 && i < 3}
               />
-              {/* градиентный бордер при ховере */}
               <div className="pointer-events-none absolute inset-0 rounded-xl ring-0 ring-transparent transition group-hover:ring-2 group-hover:ring-orange-400/80" />
-              {/* бейдж */}
               {p.tag && (
                 <span
                   className={cn(
@@ -103,13 +128,13 @@ function GroupBlock({
             </div>
             <div className="flex items-center justify-between gap-3 p-4">
               <h4 className="text-base font-semibold text-gray-800">{p.title}</h4>
-              <a
-                href="#contact-form"
+              <button
+                onClick={onOpenForm}
                 className="shrink-0 rounded-md border border-black/10 bg-white px-2.5 py-1.5 text-xs font-semibold text-gray-900 hover:bg-gray-50"
                 aria-label={`Оставить заявку: ${p.title}`}
               >
                 Заявка
-              </a>
+              </button>
             </div>
           </motion.article>
         ))}

@@ -7,6 +7,8 @@ import { motion, useReducedMotion } from "framer-motion";
 import { Menu, Phone, Send, Mail, MapPin, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import ContactForm from "@/components/ContactForm"; // путь поправь под себя
 import { cn } from "@/lib/cn";
 
 type NavItem = { href: `#${string}`; label: string };
@@ -24,7 +26,8 @@ export default function Header() {
   const [elevated, setElevated] = useState(false);
   const [progress, setProgress] = useState(0);
   const [active, setActive] = useState<string>("");
-  const [open, setOpen] = useState(false);
+  const [openMenu, setOpenMenu] = useState(false);
+  const [openForm, setOpenForm] = useState(false);
   const reduceMotion = useReducedMotion();
 
   useEffect(() => {
@@ -138,25 +141,21 @@ export default function Header() {
           {/* десктоп меню */}
           <nav className="hidden lg:flex items-center gap-8">
             {NAV.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                className={linkCls(item.href)}
-              >
+              <a key={item.href} href={item.href} className={linkCls(item.href)}>
                 {item.label}
               </a>
             ))}
             <Button
-              asChild
+              onClick={() => setOpenForm(true)}
               className="bg-gradient-to-b from-yellow-300 to-[#ffa500] text-black hover:brightness-110 shadow"
             >
-              <Link href="#contact-form">Заявка</Link>
+              Заявка
             </Button>
           </nav>
 
           {/* мобильное меню */}
           <div className="lg:hidden">
-            <Sheet open={open} onOpenChange={setOpen}>
+            <Sheet open={openMenu} onOpenChange={setOpenMenu}>
               <SheetTrigger asChild>
                 <Button
                   variant="ghost"
@@ -164,23 +163,12 @@ export default function Header() {
                   aria-label="Открыть меню"
                   className="text-black h-9 w-9"
                 >
-                  {open ? (
-                    <X className="h-5 w-5" />
-                  ) : (
-                    <Menu className="h-5 w-5" />
-                  )}
+                  {openMenu ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
                 </Button>
               </SheetTrigger>
-              <SheetContent
-                side="right"
-                className="w-72 bg-black text-white border-white/10 p-6"
-              >
+              <SheetContent side="right" className="w-72 bg-black text-white border-white/10 p-6">
                 <div className="space-y-6">
-                  <Link
-                    href="/"
-                    className="flex items-center gap-3"
-                    onClick={() => setOpen(false)}
-                  >
+                  <Link href="/" className="flex items-center gap-3" onClick={() => setOpenMenu(false)}>
                     <Image
                       src="/logo_final.png"
                       alt="Логотип"
@@ -188,9 +176,7 @@ export default function Header() {
                       height={32}
                       className="rounded-full ring-1 ring-white/15"
                     />
-                    <span className="text-base font-semibold">
-                      ТехноСтальИнжиниринг
-                    </span>
+                    <span className="text-base font-semibold">ТехноСтальИнжиниринг</span>
                   </Link>
                   <div className="h-px bg-white/10" />
                   <nav className="grid gap-2">
@@ -204,32 +190,27 @@ export default function Header() {
                             ? "bg-white/10 text-white"
                             : "text-white/80 hover:bg-white/5 hover:text-white"
                         )}
-                        onClick={() => setOpen(false)}
+                        onClick={() => setOpenMenu(false)}
                       >
                         {n.label}
                       </Link>
                     ))}
                   </nav>
                   <Button
-                    asChild
+                    onClick={() => {
+                      setOpenMenu(false);
+                      setOpenForm(true);
+                    }}
                     className="w-full py-6 text-base bg-gradient-to-b from-yellow-300 to-[#ffa500] text-black hover:brightness-110"
                   >
-                    <Link href="#contact-form" onClick={() => setOpen(false)}>
-                      Заявка
-                    </Link>
+                    Заявка
                   </Button>
                   <div className="h-px bg-white/10" />
                   <div className="grid gap-3 text-white/80 text-sm">
-                    <a
-                      href="tel:+375297391236"
-                      className="inline-flex items-center gap-2 hover:text-white"
-                    >
+                    <a href="tel:+375297391236" className="inline-flex items-center gap-2 hover:text-white">
                       <Phone className="h-4 w-4" /> +375 29 739 12 36
                     </a>
-                    <a
-                      href="mailto:info@tse.by"
-                      className="inline-flex items-center gap-2 hover:text-white"
-                    >
+                    <a href="mailto:info@tse.by" className="inline-flex items-center gap-2 hover:text-white">
                       <Mail className="h-4 w-4" /> info@tse.by
                     </a>
                     <a
@@ -247,6 +228,16 @@ export default function Header() {
           </div>
         </div>
       </div>
+
+      {/* модалка с формой */}
+      <Dialog open={openForm} onOpenChange={setOpenForm}>
+        <DialogContent className="max-w-xl bg-white">
+          <DialogHeader>
+            <DialogTitle>Оставьте заявку</DialogTitle>
+          </DialogHeader>
+          <ContactForm variant="modal" />
+        </DialogContent>
+      </Dialog>
     </header>
   );
 }

@@ -1,8 +1,18 @@
 "use client";
 
+import { useState } from "react";
 import { Mail, Phone, MapPin } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import ContactForm from "@/components/ContactForm"; // путь проверь
 
 export default function Footer() {
+  const [openForm, setOpenForm] = useState(false);
+
   return (
     <footer className="bg-gray-900 text-gray-200">
       <div className="container mx-auto px-4 py-12">
@@ -50,17 +60,17 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href="#services" className="hover:text-orange-400">
-                  Услуги
+                <a href="#products" className="hover:text-orange-400">
+                  Продукция
                 </a>
               </li>
               <li>
-                <a href="#works" className="hover:text-orange-400">
-                  Наши работы
+                <a href="#projects" className="hover:text-orange-400">
+                  Проекты
                 </a>
               </li>
               <li>
-                <a href="#contact" className="hover:text-orange-400">
+                <a href="#contacts" className="hover:text-orange-400">
                   Контакты
                 </a>
               </li>
@@ -70,12 +80,12 @@ export default function Footer() {
           {/* Кнопка заявка */}
           <div>
             <h3 className="text-lg font-semibold mb-4">Связаться</h3>
-            <a
-              href="#contact-form"
+            <button
+              onClick={() => setOpenForm(true)}
               className="inline-block w-full text-center py-3 px-6 bg-gradient-to-b from-yellow-300 to-[#ffa500] text-black font-semibold rounded-md shadow-md hover:brightness-110 transition"
             >
               Оставить заявку
-            </a>
+            </button>
           </div>
         </div>
 
@@ -84,6 +94,16 @@ export default function Footer() {
           © {new Date().getFullYear()} TSE. Все права защищены.
         </div>
       </div>
+
+      {/* Модалка с формой */}
+      <Dialog open={openForm} onOpenChange={setOpenForm}>
+        <DialogContent className="max-w-xl bg-white">
+          <DialogHeader>
+            <DialogTitle>Оставьте заявку</DialogTitle>
+          </DialogHeader>
+          <ContactForm variant="modal" />
+        </DialogContent>
+      </Dialog>
     </footer>
   );
 }
