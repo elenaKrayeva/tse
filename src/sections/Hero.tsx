@@ -1,10 +1,18 @@
 "use client";
 
+import { useState, FormEvent } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
-import Link from "next/link";
 import { cn } from "@/lib/cn";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
 
 const features = [
   "Работаем по ГОСТ",
@@ -14,6 +22,17 @@ const features = [
 ];
 
 export default function Hero() {
+  const [open, setOpen] = useState(false);
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = new FormData(e.currentTarget);
+    const data = Object.fromEntries(form.entries());
+    // TODO: подключить реальную отправку (fetch/axios/форма-тг и т.д.)
+    console.log("FORM_DATA:", data);
+    setOpen(false);
+  };
+
   return (
     <section
       id="hero"
@@ -26,7 +45,7 @@ export default function Hero() {
       <div className="pointer-events-none absolute inset-0 -z-10">
         {/* мягкий радиальный свет сверху */}
         <div className="absolute -top-20 left-1/2 h-[420px] w-[1200px] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,_rgba(255,255,255,0.45),_transparent_70%)]" />
-        {/* сетка через bg-gradient-to-b и mask */}
+        {/* сетка */}
         <div
           className="absolute inset-0 opacity-[0.08]"
           style={{
@@ -73,8 +92,9 @@ export default function Hero() {
             transition={{ delay: 0.12, duration: 0.4 }}
             className="mt-4 max-w-[56ch] text-base text-gray-700 sm:text-lg"
           >
-            Проектирование, производство и монтаж ангаров, навесов, каркасов и балок.
-            Работаем с юр. и физ. лицами, держим сроки и отвечаем за качество.
+            Проектирование, производство и монтаж ангаров, навесов, каркасов и
+            балок. Работаем с юр. и физ. лицами, держим сроки и отвечаем за
+            качество.
           </motion.p>
 
           {/* CTA */}
@@ -84,18 +104,20 @@ export default function Hero() {
             transition={{ delay: 0.18, duration: 0.4 }}
             className="mt-6 flex flex-wrap items-center gap-3"
           >
-            <Link
-              href="#contact-form"
+            <button
+              type="button"
+              onClick={() => setOpen(true)}
               className="inline-flex items-center justify-center gap-2 rounded-md bg-gradient-to-b from-yellow-300 to-[#ffa500] px-5 py-3 font-semibold text-black shadow hover:brightness-110"
             >
               Рассчитать стоимость <ArrowRight className="h-4 w-4" />
-            </Link>
-            <a
+            </button>
+
+            <Link
               href="#projects"
               className="inline-flex items-center justify-center rounded-md border border-black/10 bg-white/70 px-5 py-3 font-semibold text-gray-900 backdrop-blur hover:bg-white"
             >
               Последние проекты
-            </a>
+            </Link>
           </motion.div>
 
           {/* Фишки */}
@@ -106,7 +128,10 @@ export default function Hero() {
             className="mt-6 grid grid-cols-1 gap-2 sm:grid-cols-2"
           >
             {features.map((f) => (
-              <li key={f} className="flex items-center gap-2 text-sm text-gray-800">
+              <li
+                key={f}
+                className="flex items-center gap-2 text-sm text-gray-800"
+              >
                 <CheckCircle2 className="h-4 w-4 text-orange-500" />
                 {f}
               </li>
@@ -147,15 +172,21 @@ export default function Hero() {
             <div className="border-t border-black/10 bg-white/80 p-4 backdrop-blur sm:p-5">
               <div className="grid grid-cols-3 gap-3 text-center text-sm sm:text-base">
                 <div>
-                  <div className="font-extrabold text-gray-900">500<span className="text-gray-500"> м²</span></div>
+                  <div className="font-extrabold text-gray-900">
+                    500<span className="text-gray-500"> м²</span>
+                  </div>
                   <div className="text-gray-600">производство</div>
                 </div>
                 <div>
-                  <div className="font-extrabold text-gray-900">10<span className="text-gray-500">+</span></div>
+                  <div className="font-extrabold text-gray-900">
+                    10<span className="text-gray-500">+</span>
+                  </div>
                   <div className="text-gray-600">лет опыта</div>
                 </div>
                 <div>
-                  <div className="font-extrabold text-gray-900">24<span className="text-gray-500">/7</span></div>
+                  <div className="font-extrabold text-gray-900">
+                    24<span className="text-gray-500">/7</span>
+                  </div>
                   <div className="text-gray-600">сроки & связь</div>
                 </div>
               </div>
@@ -163,6 +194,106 @@ export default function Hero() {
           </div>
         </motion.div>
       </div>
+
+      {/* Диалог с формой заявки */}
+      <Dialog open={open} onOpenChange={setOpen}>
+        <DialogContent className="max-w-lg border-black/10 bg-white">
+          <DialogHeader>
+            <DialogTitle>Рассчитать стоимость</DialogTitle>
+            <DialogDescription className="text-gray-600">
+              Заполните форму — перезвоним в рабочее время и уточним детали.
+            </DialogDescription>
+          </DialogHeader>
+
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div className="grid gap-3 sm:grid-cols-2">
+              <div className="space-y-1.5">
+                <label className="block text-sm font-medium text-gray-800">
+                  Имя *
+                </label>
+                <input
+                  name="name"
+                  required
+                  placeholder="Имя"
+                  className="w-full rounded-md border border-black/15 bg-white px-3 py-2 text-sm outline-none ring-0 placeholder:text-gray-400 focus:border-black/30"
+                />
+              </div>
+              <div className="space-y-1.5">
+                <label className="block text-sm font-medium text-gray-800">
+                  Телефон *
+                </label>
+                <input
+                  name="phone"
+                  required
+                  type="tel"
+                  placeholder="+375 29 000 00 00"
+                  className="w-full rounded-md border border-black/15 bg-white px-3 py-2 text-sm outline-none focus:border-black/30"
+                />
+              </div>
+            </div>
+
+            <div className="space-y-1.5">
+              <label className="block text-sm font-medium text-gray-800">
+                Email
+              </label>
+              <input
+                name="email"
+                type="email"
+                placeholder="name@example.com"
+                className="w-full rounded-md border border-black/15 bg-white px-3 py-2 text-sm outline-none focus:border-black/30"
+              />
+            </div>
+
+            <div className="space-y-1.5">
+              <label className="block text-sm font-medium text-gray-800">
+                Комментарий / задача
+              </label>
+              <textarea
+                name="message"
+                rows={4}
+                placeholder="Например: ангар 18×36 м, ворота, кровля — рассчитать полный комплект..."
+                className="w-full resize-y rounded-md border border-black/15 bg-white px-3 py-2 text-sm outline-none focus:border-black/30"
+              />
+            </div>
+
+            <div className="space-y-2">
+              <label className="block text-sm font-medium text-gray-800">
+                Какой тип конструкции интересует?
+              </label>
+              <div className="grid gap-2 sm:grid-cols-2">
+                <label className="inline-flex items-center gap-2 text-sm text-gray-800">
+                  <input type="checkbox" name="types" value="Ангар" />
+                  Ангар
+                </label>
+                <label className="inline-flex items-center gap-2 text-sm text-gray-800">
+                  <input type="checkbox" name="types" value="Навес" />
+                  Навес
+                </label>
+                <label className="inline-flex items-center gap-2 text-sm text-gray-800">
+                  <input type="checkbox" name="types" value="Каркас" />
+                  Каркас
+                </label>
+                <label className="inline-flex items-center gap-2 text-sm text-gray-800">
+                  <input type="checkbox" name="types" value="Балка/ферма" />
+                  Балка/ферма
+                </label>
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              className="mt-2 inline-flex w-full items-center justify-center gap-2 rounded-md bg-gradient-to-b from-yellow-300 to-[#ffa500] px-5 py-3 font-semibold text-black shadow hover:brightness-110"
+            >
+              Отправить заявку <ArrowRight className="h-4 w-4" />
+            </button>
+
+            <p className="text-center text-xs text-gray-500">
+              Нажимая «Отправить», вы соглашаетесь с обработкой персональных
+              данных.
+            </p>
+          </form>
+        </DialogContent>
+      </Dialog>
     </section>
   );
 }
