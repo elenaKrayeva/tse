@@ -14,7 +14,7 @@ const items = [
 
 export default function Advantages() {
   return (
-    <section id="advantages" className="bg-gray-50 py-16 sm:py-20">
+    <section id="advantages" className="bg-gray-50 pt-32 pb-16 sm:pt-36 sm:pb-20">
       <div className="mx-auto max-w-container px-4">
         <motion.h2
           initial={{ opacity: 0, y: 8 }}

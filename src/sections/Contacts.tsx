@@ -2,11 +2,11 @@
 
 import { Mail, Phone, MapPin } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import ContactForm from "@/components/ContactForm"; // путь подправь под свой проект
+import ContactForm from "@/components/ContactForm"; 
 
 export default function Contacts() {
   return (
-    <section className="py-16 bg-gray-50" id="contact">
+    <section className="pt-32 pb-16 sm:pt-36 sm:pb-20 bg-gray-50" id="contacts">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl font-bold text-center mb-10 bg-gradient-to-r from-orange-500 to-orange-600 bg-clip-text text-transparent">
           Свяжитесь с нами

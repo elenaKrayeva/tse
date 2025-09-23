@@ -15,7 +15,7 @@ export default function About() {
   const reduce = useReducedMotion();
 
   return (
-    <section id="about" className="bg-white py-16 sm:py-20">
+    <section id="about" className="bg-white pt-32 pb-16 sm:pt-36 sm:pb-20">
       <div className="mx-auto grid max-w-container grid-cols-1 items-center gap-12 px-4 lg:grid-cols-2 lg:gap-20">
         {/* Фотоблок: две перекрывающиеся карточки */}
         <div className="relative">

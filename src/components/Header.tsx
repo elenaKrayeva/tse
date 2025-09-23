@@ -44,7 +44,6 @@ export default function Header() {
       .map((id) => document.getElementById(id))
       .filter(Boolean) as HTMLElement[];
     if (!sections.length) return;
-
     const io = new IntersectionObserver(
       (entries) => {
         const visible = entries
@@ -54,7 +53,6 @@ export default function Header() {
       },
       { rootMargin: "-40% 0px -55% 0px", threshold: [0, 0.25, 0.5, 0.75, 1] }
     );
-
     sections.forEach((s) => io.observe(s));
     return () => io.disconnect();
   }, []);
@@ -73,20 +71,17 @@ export default function Header() {
     <header className="fixed inset-x-0 top-0 z-50">
       {/* индикатор скролла */}
       <motion.div
-        className="h-[3px] bg-gradient-to-r from-yellow-300 via-orange-400 to-[#ffa500]"
+        className="h-[2px] sm:h-[3px] bg-gradient-to-r from-yellow-300 via-orange-400 to-[#ffa500]"
         style={{ width: `${progress}%` }}
         aria-hidden
       />
 
       {/* верхняя контактная полоска */}
       <div className="bg-black text-orange-200">
-        <div className="mx-auto flex max-w-container flex-col gap-1 px-4 py-1.5 text-xs sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex flex-wrap justify-center items-center gap-x-5 gap-y-1">
-            <a
-              href="tel:+375297391236"
-              className="inline-flex items-center gap-2 hover:text-white"
-            >
-              <Phone className="h-5 w-5 text-orange-300" />
+        <div className="mx-auto flex max-w-container flex-col gap-1 px-4 py-0.5 text-[11px] sm:text-xs sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex flex-wrap justify-center items-center gap-x-4 gap-y-1">
+            <a href="tel:+375297391236" className="inline-flex items-center gap-1.5 hover:text-white">
+              <Phone className="h-3.5 w-3.5 text-orange-300" />
               <span className="hidden md:inline">+375 29 739 12 36</span>
             </a>
             <a
@@ -97,14 +92,11 @@ export default function Header() {
             >
               <Send className="h-3.5 w-3.5" /> Telegram
             </a>
-            <a
-              href="mailto:info@metall.by"
-              className="inline-flex items-center gap-1.5 hover:text-orange-300"
-            >
+            <a href="mailto:info@metall.by" className="inline-flex items-center gap-1.5 hover:text-orange-300">
               <Mail className="h-3.5 w-3.5" /> info@metall.by
             </a>
           </div>
-          <div className="flex items-start justify-center gap-2 text-center sm:items-center sm:justify-start sm:text-left">
+          <div className="flex items-start justify-center gap-1.5 text-center sm:items-center sm:justify-start sm:text-left">
             <MapPin className="h-3.5 w-3.5 shrink-0" />
             <span className="hover:text-orange-300 whitespace-normal break-words">
               Минск, ул. Судмалиса, 20
@@ -121,18 +113,18 @@ export default function Header() {
           elevated && "shadow-[0_8px_28px_-12px_rgba(0,0,0,.55)]"
         )}
       >
-        <div className="mx-auto flex max-w-container items-center justify-between px-4 py-3 md:py-4">
+        <div className="mx-auto flex max-w-container items-center justify-between px-4 py-2 md:py-4">
           {/* логотип */}
-          <Link href="/" className="group flex items-center gap-3">
+          <Link href="/" className="group flex items-center gap-2 md:gap-3">
             <Image
               src="/logo_final.png"
               alt="Логотип"
-              width={50}
-              height={50}
-              className="rounded-full ring-1 ring-black/20"
+              width={36}
+              height={36}
+              className="rounded-full ring-1 ring-black/20 md:w-[50px] md:h-[50px]"
               priority
             />
-            <span className="hidden sm:inline text-lg font-semibold tracking-wide text-black">
+            <span className="hidden sm:inline text-base md:text-lg font-semibold tracking-wide text-black">
               ТехноСтальИнжиниринг
             </span>
           </Link>
@@ -140,11 +132,7 @@ export default function Header() {
           {/* десктоп меню */}
           <nav className="hidden lg:flex items-center gap-8">
             {NAV.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                className={linkCls(item.href)}
-              >
+              <a key={item.href} href={item.href} className={linkCls(item.href)}>
                 {item.label}
               </a>
             ))}
@@ -164,35 +152,22 @@ export default function Header() {
                   variant="ghost"
                   size="icon"
                   aria-label="Открыть меню"
-                  className="text-black"
+                  className="text-black h-9 w-9"
                 >
-                  {open ? (
-                    <X className="h-6 w-6" />
-                  ) : (
-                    <Menu className="h-6 w-6" />
-                  )}
+                  {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
                 </Button>
               </SheetTrigger>
-              <SheetContent
-                side="right"
-                className="w-72 bg-black text-white border-white/10 p-6"
-              >
+              <SheetContent side="right" className="w-72 bg-black text-white border-white/10 p-6">
                 <div className="space-y-6">
-                  <Link
-                    href="/"
-                    className="flex items-center gap-3"
-                    onClick={() => setOpen(false)}
-                  >
+                  <Link href="/" className="flex items-center gap-3" onClick={() => setOpen(false)}>
                     <Image
                       src="/logo_final.png"
                       alt="Логотип"
-                      width={36}
-                      height={36}
+                      width={32}
+                      height={32}
                       className="rounded-full ring-1 ring-white/15"
                     />
-                    <span className="text-base font-semibold">
-                      ТехноСтальИнжиниринг
-                    </span>
+                    <span className="text-base font-semibold">ТехноСтальИнжиниринг</span>
                   </Link>
                   <div className="h-px bg-white/10" />
                   <nav className="grid gap-2">
@@ -222,16 +197,10 @@ export default function Header() {
                   </Button>
                   <div className="h-px bg-white/10" />
                   <div className="grid gap-3 text-white/80 text-sm">
-                    <a
-                      href="tel:+375297391236"
-                      className="inline-flex items-center gap-2 hover:text-white"
-                    >
+                    <a href="tel:+375297391236" className="inline-flex items-center gap-2 hover:text-white">
                       <Phone className="h-4 w-4" /> +375 29 739 12 36
                     </a>
-                    <a
-                      href="mailto:info@metall.by"
-                      className="inline-flex items-center gap-2 hover:text-white"
-                    >
+                    <a href="mailto:info@metall.by" className="inline-flex items-center gap-2 hover:text-white">
                       <Mail className="h-4 w-4" /> info@metall.by
                     </a>
                     <a

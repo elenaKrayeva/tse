@@ -61,7 +61,7 @@ const faqs = [
 
 export default function Faq() {
   return (
-    <section id="faq" className="bg-gray-50 py-16 sm:py-20">
+    <section id="faq" className="bg-gray-50 pt-32 pb-16 sm:pt-36 sm:pb-20">
       <div className="mx-auto max-w-3xl px-4">
         <h2 className="text-center text-2xl font-bold text-gray-900 sm:text-3xl">
           Вопросы и ответы

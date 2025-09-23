@@ -43,7 +43,7 @@ const photos = [
 
 export default function ProjectsPhotos() {
   return (
-    <section id="projects" className="bg-white py-14 sm:py-20">
+    <section id="projects" className="bg-white pt-32 pb-16 sm:pt-36 sm:pb-20">
       <h2 className="text-center text-2xl font-bold text-gray-900 sm:text-3xl">
         Последние работы
       </h2>
