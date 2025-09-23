@@ -29,8 +29,8 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-2">
                 <Mail className="h-5 w-5 text-orange-500" />
-                <a href="mailto:info@metall.by" className="hover:underline">
-                  info@metall.by
+                <a href="mailto:info@tse.by" className="hover:underline">
+                  info@tse.by
                 </a>
               </li>
               <li className="flex items-center gap-2">

@@ -1,8 +1,14 @@
 "use client";
 
 import { Mail, Phone, MapPin } from "lucide-react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import ContactForm from "@/components/ContactForm"; 
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import ContactForm from "@/components/ContactForm";
 
 export default function Contacts() {
   return (
@@ -34,10 +40,10 @@ export default function Contacts() {
             </div>
             <p className="font-semibold">Email</p>
             <a
-              href="mailto:info@metall.by"
+              href="mailto:info@tse.by"
               className="bg-gradient-to-r from-orange-500 to-orange-600 bg-clip-text text-transparent font-medium hover:underline"
             >
-              info@metall.by
+              info@tse.by
             </a>
           </div>
 

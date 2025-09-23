@@ -80,7 +80,10 @@ export default function Header() {
       <div className="bg-black text-orange-200">
         <div className="mx-auto flex max-w-container flex-col gap-1 px-4 py-0.5 text-[11px] sm:text-xs sm:flex-row sm:items-center sm:justify-between">
           <div className="flex flex-wrap justify-center items-center gap-x-4 gap-y-1">
-            <a href="tel:+375297391236" className="inline-flex items-center gap-1.5 hover:text-white">
+            <a
+              href="tel:+375297391236"
+              className="inline-flex items-center gap-1.5 hover:text-white"
+            >
               <Phone className="h-3.5 w-3.5 text-orange-300" />
               <span className="hidden md:inline">+375 29 739 12 36</span>
             </a>
@@ -92,8 +95,11 @@ export default function Header() {
             >
               <Send className="h-3.5 w-3.5" /> Telegram
             </a>
-            <a href="mailto:info@metall.by" className="inline-flex items-center gap-1.5 hover:text-orange-300">
-              <Mail className="h-3.5 w-3.5" /> info@metall.by
+            <a
+              href="mailto:info@tse.by"
+              className="inline-flex items-center gap-1.5 hover:text-orange-300"
+            >
+              <Mail className="h-3.5 w-3.5" /> info@tse.by
             </a>
           </div>
           <div className="flex items-start justify-center gap-1.5 text-center sm:items-center sm:justify-start sm:text-left">
@@ -132,7 +138,11 @@ export default function Header() {
           {/* десктоп меню */}
           <nav className="hidden lg:flex items-center gap-8">
             {NAV.map((item) => (
-              <a key={item.href} href={item.href} className={linkCls(item.href)}>
+              <a
+                key={item.href}
+                href={item.href}
+                className={linkCls(item.href)}
+              >
                 {item.label}
               </a>
             ))}
@@ -154,12 +164,23 @@ export default function Header() {
                   aria-label="Открыть меню"
                   className="text-black h-9 w-9"
                 >
-                  {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+                  {open ? (
+                    <X className="h-5 w-5" />
+                  ) : (
+                    <Menu className="h-5 w-5" />
+                  )}
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right" className="w-72 bg-black text-white border-white/10 p-6">
+              <SheetContent
+                side="right"
+                className="w-72 bg-black text-white border-white/10 p-6"
+              >
                 <div className="space-y-6">
-                  <Link href="/" className="flex items-center gap-3" onClick={() => setOpen(false)}>
+                  <Link
+                    href="/"
+                    className="flex items-center gap-3"
+                    onClick={() => setOpen(false)}
+                  >
                     <Image
                       src="/logo_final.png"
                       alt="Логотип"
@@ -167,7 +188,9 @@ export default function Header() {
                       height={32}
                       className="rounded-full ring-1 ring-white/15"
                     />
-                    <span className="text-base font-semibold">ТехноСтальИнжиниринг</span>
+                    <span className="text-base font-semibold">
+                      ТехноСтальИнжиниринг
+                    </span>
                   </Link>
                   <div className="h-px bg-white/10" />
                   <nav className="grid gap-2">
@@ -197,11 +220,17 @@ export default function Header() {
                   </Button>
                   <div className="h-px bg-white/10" />
                   <div className="grid gap-3 text-white/80 text-sm">
-                    <a href="tel:+375297391236" className="inline-flex items-center gap-2 hover:text-white">
+                    <a
+                      href="tel:+375297391236"
+                      className="inline-flex items-center gap-2 hover:text-white"
+                    >
                       <Phone className="h-4 w-4" /> +375 29 739 12 36
                     </a>
-                    <a href="mailto:info@metall.by" className="inline-flex items-center gap-2 hover:text-white">
-                      <Mail className="h-4 w-4" /> info@metall.by
+                    <a
+                      href="mailto:info@tse.by"
+                      className="inline-flex items-center gap-2 hover:text-white"
+                    >
+                      <Mail className="h-4 w-4" /> info@tse.by
                     </a>
                     <a
                       href="https://t.me/metall"
