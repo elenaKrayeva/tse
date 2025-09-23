@@ -1,103 +1,98 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import { motion } from "framer-motion";
+import { Phone, Send } from "lucide-react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { toast } from "sonner";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+
+const schema = z.object({
+  name: z.string().min(2, "Минимум 2 символа"),
+  phone: z.string().min(5, "Введите телефон"),
+});
+
+type FormValues = z.infer<typeof schema>;
+
+export default function HomePage() {
+  const { register, handleSubmit, formState: { errors, isSubmitting }, reset } =
+    useForm<FormValues>({ resolver: zodResolver(schema) });
+
+  const onSubmit = async (values: FormValues) => {
+    // имитация отправки
+    await new Promise((r) => setTimeout(r, 500));
+    toast.success(`Заявка отправлена: ${values.name}`);
+    reset();
+  };
+
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="mx-auto max-w-4xl px-4 py-16">
+      {/* Анимационный заголовок */}
+      <motion.h1
+        initial={{ opacity: 0, y: 14 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4 }}
+        className="text-3xl md:text-4xl font-bold tracking-tight"
+      >
+        Проверка интеграций: анимации, иконки, форма, слайдер
+      </motion.h1>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
+      {/* Маленький слайдер */}
+      <div className="mt-8 rounded-lg overflow-hidden shadow">
+        <Swiper spaceBetween={12} slidesPerView={1} loop>
+          <SwiperSlide>
+            <img src="/slide1.jpg" alt="slide1" className="w-full h-64 object-cover" />
+          </SwiperSlide>
+          <SwiperSlide>
+            <img src="/slide2.jpg" alt="slide2" className="w-full h-64 object-cover" />
+          </SwiperSlide>
+        </Swiper>
+      </div>
+
+      {/* Форма с валидацией */}
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="mt-10 grid gap-4 rounded-lg border border-neutral-200 bg-white p-4 md:p-6 shadow-sm"
+      >
+        <label className="grid gap-1">
+          <span className="text-sm font-medium">Ваше имя</span>
+          <input
+            {...register("name")}
+            className="h-10 rounded-md border border-neutral-300 px-3 outline-none focus:border-neutral-400"
+            placeholder="Иван"
           />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
+          {errors.name && <span className="text-sm text-red-600">{errors.name.message}</span>}
+        </label>
+
+        <label className="grid gap-1">
+          <span className="text-sm font-medium">Телефон</span>
+          <input
+            {...register("phone")}
+            className="h-10 rounded-md border border-neutral-300 px-3 outline-none focus:border-neutral-400"
+            placeholder="+375 29 …"
           />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+          {errors.phone && <span className="text-sm text-red-600">{errors.phone.message}</span>}
+        </label>
+
+        <button
+          type="submit"
+          disabled={isSubmitting}
+          className="inline-flex items-center justify-center gap-2 rounded-md bg-gradient-to-b from-yellow-300 to-[#ffa500] px-5 py-2.5 font-semibold text-white shadow hover:brightness-110 disabled:opacity-70"
         >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
+          <Send className="size-4" />
+          {isSubmitting ? "Отправка…" : "Отправить заявку"}
+        </button>
+      </form>
+
+      {/* Блок иконок */}
+      <div className="mt-8 flex items-center gap-3 text-neutral-700">
+        <Phone className="size-5" />
+        <a href="tel:+375297391236" className="font-semibold hover:text-[#ffa500]">
+          +375 29 739 12 36
         </a>
-      </footer>
+      </div>
     </div>
   );
 }
