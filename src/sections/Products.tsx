@@ -12,7 +12,8 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import ContactForm from "@/components/ContactForm"; // путь поправь под свой
+import ContactForm from "@/components/ContactForm"; 
+import { withBasePath } from "@/lib/prefix";
 
 export default function ProductsSection() {
   const [openForm, setOpenForm] = useState(false);
@@ -105,7 +106,7 @@ function GroupBlock({
           >
             <div className="relative h-52 w-full overflow-hidden sm:h-56">
               <Image
-                src={p.img}
+                src={withBasePath(p.img)}
                 alt={p.title}
                 fill
                 className="object-cover transition-transform duration-500 group-hover:scale-105"

@@ -13,6 +13,7 @@ import {
   DialogTitle,
   DialogDescription,
 } from "@/components/ui/dialog";
+import { withBasePath } from "@/lib/prefix";
 
 const features = [
   "Работаем по ГОСТ",
@@ -28,7 +29,7 @@ export default function Hero() {
     e.preventDefault();
     const form = new FormData(e.currentTarget);
     const data = Object.fromEntries(form.entries());
-    // TODO: подключить реальную отправку (fetch/axios/форма-тг и т.д.)
+    // TODO: подключить реальную отправку 
     console.log("FORM_DATA:", data);
     setOpen(false);
   };
@@ -161,7 +162,7 @@ export default function Hero() {
           <div className="absolute -inset-4 -z-10 rounded-2xl bg-[radial-gradient(400px_200px_at_70%_20%,rgba(255,165,0,0.25),transparent)]" />
           <div className="relative overflow-hidden rounded-2xl border border-black/10 bg-white shadow-xl">
             <Image
-              src="/hero.jpg"
+              src={withBasePath("/hero.jpg")}
               alt="Производство металлоконструкций"
               width={1200}
               height={900}

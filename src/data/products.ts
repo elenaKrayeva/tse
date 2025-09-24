@@ -23,7 +23,7 @@ export type ProductItem = {
         { title: "Прогоны", img: "/purlins.jpg" },
         { title: "Металлические каркасы", img: "/frames.jpg", tag: "hit" },
         { title: "Рамы и конструкции", img: "/frames2.jpg" },
-        { title: "Металлические фермы", img: "/angars.jpg" }, // для примера используем тот же ангар
+        { title: "Металлические фермы", img: "/angars.jpg" }, 
       ],
     },
     {

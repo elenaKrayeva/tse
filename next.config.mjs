@@ -4,7 +4,7 @@ const isGH = process.env.NEXT_PUBLIC_DEPLOY_TARGET === 'gh';
 
 
 const repo = 'tse';           
-const username = 'elenaKrayeva'; // твой GitHub логин (только для assetPrefix ниже)
+const username = 'elenaKrayeva';
 
 export default {
   output: 'export',              

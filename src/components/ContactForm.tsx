@@ -53,7 +53,7 @@ export default function ContactForm({
         page_url: typeof window !== "undefined" ? window.location.href : "",
       };
 
-      // Если SMTP/ключи ещё не настроены — просто лог и фейковый успех
+      // лог и фейковый успех
       if (!serviceId || !templateId || !publicKey) {
         console.log("[ContactForm] values:", values);
         setStatus("success");

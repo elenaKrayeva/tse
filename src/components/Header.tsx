@@ -8,8 +8,9 @@ import { Menu, Phone, Send, Mail, MapPin, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import ContactForm from "@/components/ContactForm"; // путь поправь под себя
+import ContactForm from "@/components/ContactForm"; 
 import { cn } from "@/lib/cn";
+import { withBasePath } from "@/lib/prefix";
 
 type NavItem = { href: `#${string}`; label: string };
 
@@ -91,7 +92,7 @@ export default function Header() {
               <span className="hidden md:inline">+375 29 739 12 36</span>
             </a>
             <a
-              href="https://t.me/metall"
+              href="https://t.me/tse"
               className="inline-flex items-center gap-1.5 hover:text-orange-300"
               target="_blank"
               rel="noopener noreferrer"
@@ -126,7 +127,7 @@ export default function Header() {
           {/* логотип */}
           <Link href="/" className="group flex items-center gap-2 md:gap-3">
             <Image
-              src="/logo_final.png"
+              src={withBasePath("/logo_final.png")}
               alt="Логотип"
               width={36}
               height={36}
@@ -170,7 +171,7 @@ export default function Header() {
                 <div className="space-y-6">
                   <Link href="/" className="flex items-center gap-3" onClick={() => setOpenMenu(false)}>
                     <Image
-                      src="/logo_final.png"
+                       src={withBasePath("/logo_final.png")}
                       alt="Логотип"
                       width={32}
                       height={32}

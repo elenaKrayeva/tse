@@ -8,7 +8,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import ContactForm from "@/components/ContactForm"; // путь проверь
+import ContactForm from "@/components/ContactForm"; 
 
 export default function Footer() {
   const [openForm, setOpenForm] = useState(false);

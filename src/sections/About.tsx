@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import { ShieldCheck, Clock, Users, Factory } from "lucide-react";
+import { withBasePath } from "@/lib/prefix";
 
 const features = [
   { icon: Factory, title: "Собственное производство" },
@@ -32,7 +33,7 @@ export default function About() {
             className="relative overflow-hidden rounded-2xl border border-black/10 bg-white shadow-xl"
           >
             <Image
-              src="/about1.png"
+              src={withBasePath("/about1.png")}
               alt="Производство металлоконструкций"
               width={400}
               height={200}
@@ -53,7 +54,7 @@ export default function About() {
             {/* тонкая оранжевая линия сверху как акцент */}
             <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-yellow-300 via-orange-400 to-[#ffa500]" />
             <Image
-              src="/about.jpg"
+              src={withBasePath("/about.jpg")}
               alt="Сборка и контроль качества"
               width={500}
               height={200}

@@ -12,6 +12,7 @@ import {
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import { withBasePath } from "@/lib/prefix";
 
 const photos = [
   { src: "/proj1.jpg", alt: "Проект 1" },
@@ -53,7 +54,6 @@ export default function ProjectsPhotos() {
       </p>
       <div className="mx-auto max-w-container px-4">
         <div className="relative">
-          {/* стрелки показываем со sm+ */}
           <button
             className="proj-prev absolute left-0 top-1/2 z-10 hidden -translate-y-1/2 rounded-full border border-black/10 bg-white/80 p-2 shadow backdrop-blur hover:bg-white sm:inline-flex"
             aria-label="Предыдущая фотография"
@@ -92,7 +92,7 @@ export default function ProjectsPhotos() {
                 <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow">
                   <div className="relative aspect-[16/10] w-full">
                     <Image
-                      src={p.src}
+                      src={withBasePath(p.src)}
                       alt={p.alt}
                       fill
                       sizes="(max-width: 640px) 100vw, (max-width: 1280px) 60vw, 33vw"
