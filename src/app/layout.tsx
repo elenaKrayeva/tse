@@ -8,7 +8,7 @@ const montserrat = Montserrat({ subsets: ["latin", "cyrillic"], weight: ["600","
 const roboto = Roboto({ subsets: ["latin", "cyrillic"], weight: ["300","400","500","700"], variable: "--font-roboto" });
 
 export const metadata: Metadata = {
-  title: "Metall — металлоконструкции",
+  title: "TSE — металлоконструкции",
   description: "Современные металлоконструкции под ключ.",
 };
 

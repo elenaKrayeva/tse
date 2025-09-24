@@ -215,7 +215,7 @@ export default function Header() {
                       <Mail className="h-4 w-4" /> info@tse.by
                     </a>
                     <a
-                      href="https://t.me/metall"
+                      href="https://t.me/tse"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-2 hover:text-white"
