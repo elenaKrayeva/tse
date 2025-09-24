@@ -18,9 +18,7 @@ export default function About() {
   return (
     <section id="about" className="bg-white pt-32 pb-16 sm:pt-36 sm:pb-20">
       <div className="mx-auto grid max-w-container grid-cols-1 items-center gap-12 px-4 lg:grid-cols-2 lg:gap-20">
-        {/* Фотоблок: две перекрывающиеся карточки */}
         <div className="relative">
-          {/* мягкое свечение позади */}
           <div className="pointer-events-none absolute -inset-6 -z-10 rounded-3xl bg-[radial-gradient(500px_240px_at_30%_20%,rgba(255,165,0,0.22),transparent_70%)]" />
 
           {/* нижняя карточка (основная) */}
@@ -49,7 +47,7 @@ export default function About() {
             viewport={{ once: true, margin: "-10% 0px" }}
             transition={{ duration: 0.55, delay: 0.05 }}
             whileHover={reduce ? undefined : { y: -6, rotate: -1 }}
-            className="absolute -right-4 -bottom-12 w-[70%] overflow-hidden rounded-2xl border border-black/10 bg-white shadow-2xl sm:-right-6 sm:-bottom-8 lg:-right-10 lg:-bottom-10"
+            className="absolute -right-4 -bottom-12 w-[55%] overflow-hidden rounded-2xl border border-black/10 bg-white shadow-2xl sm:-right-6 sm:-bottom-8 lg:-right-10 lg:-bottom-10"
           >
             {/* тонкая оранжевая линия сверху как акцент */}
             <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-yellow-300 via-orange-400 to-[#ffa500]" />

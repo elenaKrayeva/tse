@@ -92,7 +92,7 @@ export default function Header() {
               <span className="hidden md:inline">+375 25 524 40 25</span>
             </a>
             <a
-              href="https://t.me/tse"
+              href="https://t.me/tse"  //поменять!
               className="inline-flex items-center gap-1.5 hover:text-orange-300"
               target="_blank"
               rel="noopener noreferrer"
@@ -100,7 +100,7 @@ export default function Header() {
               <Send className="h-3.5 w-3.5" /> Telegram
             </a>
             <a
-              href="mailto:info@tse.by"
+              href="mailto:info@tse.by" //не забыть!
               className="inline-flex items-center gap-1.5 hover:text-orange-300"
             >
               <Mail className="h-3.5 w-3.5" /> info@tse.by
