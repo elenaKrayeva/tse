@@ -8,7 +8,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import ContactForm from "@/components/ContactForm"; 
+import ContactForm from "@/components/ContactForm";
 
 export default function Footer() {
   const [openForm, setOpenForm] = useState(false);
@@ -33,8 +33,8 @@ export default function Footer() {
             <ul className="space-y-3">
               <li className="flex items-center gap-2">
                 <Phone className="h-5 w-5 text-orange-500" />
-                <a href="tel:+375291234567" className="hover:underline">
-                  +375 (29) 123-45-67
+                <a href="tel:291234567" className="hover:underline">
+                  +375 (25) 524-40-25
                 </a>
               </li>
               <li className="flex items-center gap-2">

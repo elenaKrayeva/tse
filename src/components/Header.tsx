@@ -85,11 +85,11 @@ export default function Header() {
         <div className="mx-auto flex max-w-container flex-col gap-1 px-4 py-0.5 text-[11px] sm:text-xs sm:flex-row sm:items-center sm:justify-between">
           <div className="flex flex-wrap justify-center items-center gap-x-4 gap-y-1">
             <a
-              href="tel:+375297391236"
+              href="tel:+375255244025"
               className="inline-flex items-center gap-1.5 hover:text-white"
             >
               <Phone className="h-3.5 w-3.5 text-orange-300" />
-              <span className="hidden md:inline">+375 29 739 12 36</span>
+              <span className="hidden md:inline">+375 25 524 40 25</span>
             </a>
             <a
               href="https://t.me/tse"
@@ -208,8 +208,8 @@ export default function Header() {
                   </Button>
                   <div className="h-px bg-white/10" />
                   <div className="grid gap-3 text-white/80 text-sm">
-                    <a href="tel:+375297391236" className="inline-flex items-center gap-2 hover:text-white">
-                      <Phone className="h-4 w-4" /> +375 29 739 12 36
+                    <a href="tel:+375255244025" className="inline-flex items-center gap-2 hover:text-white">
+                      <Phone className="h-4 w-4" /> +375 25 524 40 25
                     </a>
                     <a href="mailto:info@tse.by" className="inline-flex items-center gap-2 hover:text-white">
                       <Mail className="h-4 w-4" /> info@tse.by

@@ -23,7 +23,7 @@ export type ProductItem = {
         { title: "Прогоны", img: "/purlins.jpg" },
         { title: "Металлические каркасы", img: "/frames.jpg", tag: "hit" },
         { title: "Рамы и конструкции", img: "/frames2.jpg" },
-        { title: "Металлические фермы", img: "/angars.jpg" }, 
+        { title: "Металлические фермы", img: "/angars.jpg", tag: "new" }, 
       ],
     },
     {
@@ -33,7 +33,7 @@ export type ProductItem = {
         { title: "Закладные детали", img: "/zakladnye.jpg" },
         {
           title: "Изделия для монтажа и инженерных систем",
-          img: "/mep-parts.jpg",
+          img: "/mep-parts.jpg", tag: "hit"
         },
         { title: "Кронштейны", img: "/brackets.jpg" },
       ],
@@ -70,7 +70,7 @@ export type ProductItem = {
     {
       id: "custom",
       title: "Индивидуальные решения",
-      items: [{ title: "Нестандартные изделия", img: "/custom.jpg" }],
+      items: [{ title: "Нестандартные изделия", img: "/custom.jpg", tag: "hit" }],
     },
   ];
   

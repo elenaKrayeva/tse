@@ -26,10 +26,10 @@ export default function Contacts() {
             </div>
             <p className="font-semibold">Телефон</p>
             <a
-              href="tel:+375291234567"
+              href="tel:+375255244025"
               className="bg-gradient-to-r from-orange-500 to-orange-600 bg-clip-text text-transparent font-medium hover:underline"
             >
-              +375 (29) 123-45-67
+              +375 (25) 524-40-25
             </a>
           </div>
 
